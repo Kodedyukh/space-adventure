@@ -1,0 +1,29 @@
+import pygame, sys, math
+from pygame.locals import *
+
+# set color constants
+#            R    G    B
+GRAY     = (100, 100, 100)
+NAVYBLUE = ( 60, 60, 100)
+WHITE = (255, 255, 255)
+RED = (255, 0,0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
+YELLOW = (255, 255, 0)
+ORANGE = (255, 128, 0)
+PURPLE = (255, 0, 255)
+CYAN = (0, 255, 255)
+
+
+FPS = 30
+WINDOWWIDTH = 800 # size of window width in pixels
+WINDOWHEIGHT = 600 # size of window height in pixels
+
+cellWidth=WINDOWWIDTH/30
+cellHeight=WINDOWHEIGHT/20
+
+# display settings initiation
+global FPSCLOCK, DISPLAYSURF
+pygame.init()
+FPSCLOCK = pygame.time.Clock()
+DISPLAYSURF = pygame.display.set_mode ((WINDOWWIDTH, WINDOWHEIGHT))
