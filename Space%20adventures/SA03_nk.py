@@ -46,7 +46,10 @@ shipWidth = 10
 plasmaSpeed=5.0
 
 #max speed of asteroids inside catcher
-maxInCatherSpeed=7.0
+maxInCatcherSpeed=5.0
+
+#speed of catcher's push
+speedCatcherPush=5.0
 
 # display settings initiation
 global FPSCLOCK, DISPLAYSURF
@@ -112,9 +115,9 @@ class battleShip(pygame.sprite.Sprite):
         self.onOrbit=False
         self.trajectory=[]
         self.alive=True
-        self.catcherRadius=10
+        self.catcherRadius=40
         self.catcherOn=False
-        self.objectInCatcher=False
+        self.asteroidCaught=None
 
         # defines initial rotation characteristics of player's ship
         # all angular measures are in radians
@@ -132,9 +135,9 @@ class battleShip(pygame.sprite.Sprite):
         self.mask=pygame.mask.from_surface(self.Surf) #create mask for collision
 
         #calculate coordintes of asteroid catcher
-        self.catcherCenter=vecSum(vector((math.cos(self.angle)*(shipHeight/2+self.catcherRadius), math.sin(self.angle)*(shipHeight/2+self.catcherRadius))), self.position)
+        self.catcherCenter=vecSum(vector((math.cos(self.angle)*(shipHeight/2.0+self.catcherRadius), -math.sin(self.angle)*(shipHeight/2.0+self.catcherRadius))), self.position)
 
-    def update(self, force, speedDelta, rotationDelta):
+    def update(self, force, speedDelta, rotationDelta, asteroidBelt):
         if self.onOrbit==False:
             #update decartes position
             # first update position, then - speed and finally - acceleration
@@ -156,8 +159,27 @@ class battleShip(pygame.sprite.Sprite):
             self.rotation=rotationDelta
             if self.rotation>(2*math.pi): self.rotation=self.rotation%(2*math.pi)
 
+        #calculate caught asteroids movements and asteroid catch
+
+        if self.asteroidCaught!=None and self.catcherOn==True:
+            self.asteroidCatch(self.asteroidCaught)
+        elif self.asteroidCaught!=None and self.catcherOn==False:
+            self.asteroidPush(self.asteroidCaught)
+            self.asteroidCaught=None
+        elif self.asteroidCaught==None and self.catcherOn==True:
+            distanceToNearest=self.catcherRadius
+            for i in asteroidBelt:
+                print (vecMag(vecDif(self.catcherCenter, i.position)))
+                if vecMag(vecDif(self.catcherCenter, i.position))<distanceToNearest:
+                    self.asteroidCaught=i
+                    distanceToNearest=vecMag(vecDif(self.catcherCenter, i.position))
+            if self.asteroidCaught==None:
+                self.catcherOn=False
+            else: self.asteroidCatch(self.asteroidCaught)           
+           
+
         #calculate coordintes of asteroid catcher
-        self.catcherCenter=vecSum(vector((math.cos(self.angle)*(shipHeight/2+self.catcherRadius), math.sin(self.angle)*(shipHeight/2+self.catcherRadius))), self.position)
+        self.catcherCenter=vecSum(vector((math.cos(self.angle)*(shipHeight/2.0+self.catcherRadius), -math.sin(self.angle)*(shipHeight/2.0+self.catcherRadius))), self.position)
 
         #rotate ship
 
@@ -172,15 +194,20 @@ class battleShip(pygame.sprite.Sprite):
         if self.alive==False:
             self.kill()
 
-    def asteroidCatcher(self, other):
+    def asteroidCatch(self, other):        
         #returns the speed to the catched object
         if self.catcherCenter==other.position:
             other.speed=self.speed
         elif vecMag(vecDif(self.catcherCenter, other.position))>maxInCatcherSpeed:
-            speedDirection=multSc(1.0/vecMag(vecDif(self.catcherCenter, other.position)),vecDif(other.position, self.catcherCenter))
-            otherSpeed=vecSum(self.speed, multSc(maxInCatcherSpeed, speedDirection))
+            speedDirection=multSc(1.0/vecMag(vecDif(self.catcherCenter, other.position)),vecDif(self.catcherCenter, other.position))
+            other.speed=vecSum(self.speed, multSc(maxInCatcherSpeed, speedDirection))
         elif vecMag(vecDif(self.catcherCenter, other.position))<=maxInCatcherSpeed:
-            otherSpeed=vecSum(self.speed, vecDif(self.catcherCenter, other.position)
+            other.speed=vecSum(self.speed, vecDif(self.catcherCenter, other.position))
+
+    def asteroidPush(self, other):
+        #catcher push in the direction of the player's ship with additional speed of speedCatcherPush in magnitude
+        other.speed=multSc(speedCatcherPush, vector((math.cos(self.angle), -math.sin(self.angle))))
+                              
 
     def respawn(self, respawnPoint, ships):
         self.position=respawnPoint
@@ -365,7 +392,6 @@ class foePlanet(planet):
         if vecMag(vecDif(self.position, other.position))<=(self.fireRadius+self.mass) and self.timeFromLastShot==self.shotInterval and isinstance(other, battleShip) and other.alive==True:
             self.shoot(other, plasmaGroup)
             self.timeFromLastShot=0
-            print('playerSpoted')
 
     def shoot(self, other, plasmaGroup):
         trajectory=other.trajectory
@@ -375,7 +401,6 @@ class foePlanet(planet):
             eta={x: (int((vecMag(vecDif(self.position, x))-self.mass)/plasmaSpeed)-trajectory.index(x))**2 for x in trajectory}
             #take a minimum of differences between time of player and and plasma shot arrival
             shootPoint=min(trajectory, key=lambda x: eta[x])
-            print(shootPoint)
             shootDirection=multSc(1.0/vecMag(vecDif(shootPoint, self.position)),vecDif(shootPoint, self.position))
             plasmaVector=multSc(plasmaSpeed, shootDirection)
             plasmaPosition=vecSum(self.position, multSc(self.mass, shootDirection))
@@ -421,7 +446,7 @@ class asteroidSpawnSpot():
 
     def update(self, asteroidGroup):
         #check whetther it is time to shoot
-        self.internalFrames=self.internalFrames+1
+        self.internalFrames+=1
         if self.internalFrames==self.interval:
             #spawn asteroid and number of frames from last asteroid respawn set to zero
             asteroidGroup.add(asteroid(self.position, self.velocity))
@@ -434,6 +459,10 @@ def main():
     DISPLAYSURF.fill(WHITE)
     DISPLAYSURF.set_colorkey(WHITE)
     pygame.display.update()
+
+    #game modes setup
+    possibleGameModes=('game', 'finish', 'death')
+    curentGameMode=possibleGameModes[0]
 
     #set start and finish
     start=vector((50, 550))
@@ -454,7 +483,7 @@ def main():
     #set planetary system
     planetarySystem=pygame.sprite.Group()
     #planetarySystem.add(planet(30, RED, vector((100, 100))))
-    planetarySystem.add(foePlanet (40, RED, vector((400, 200)), 60))
+    planetarySystem.add(planet (40, BLUE, vector((400, 200))))
     planetarySystem.add(frPlanet (20, GREEN, vector((50, 280))))
     planetarySystem.add(planet (20, BLUE, vector((600, 500))))
     #planetarySystem.add(planet (20, BLUE, vector((500, 320))))
@@ -462,7 +491,7 @@ def main():
 
     #set asteroids
     asteroidBelt=pygame.sprite.Group()
-    hary=asteroidSpawnSpot(vector((150, 5)), vector((2, 4)), 30)
+    hary=asteroidSpawnSpot(vector((150, 5)), vector((1, 2)), 60)
 
     #set plasma
     plasmaShots=pygame.sprite.Group()
@@ -509,6 +538,11 @@ def main():
                 elif event.key==K_s:#if 's' key pressed -
                     deltaRot=deltaRot+engine*rotIner# right shunting engine is on and ship slightly rotates counter-clockwise
                     rightShuntingEngine=True
+
+                elif event.key==K_SPACE:
+                    #if space is pushed asteroid catcher is on
+                    playerShip.catcherOn=not playerShip.catcherOn
+                              
         
         #calculate gravity force for player's ship
         for i in planetarySystem.sprites():
@@ -625,7 +659,7 @@ def main():
         
         # draw the ship with engine flames
         playerShip.engineFlames(leftEngine, leftShuntingEngine, rightShuntingEngine, rightEngine)
-        ships.update(gravity, deltaSpeed, deltaRot)
+        ships.update(gravity, deltaSpeed, deltaRot, asteroidBelt)
         #throw away used point in trajectory
         if not firstLoop:
             if playerShip.trajectory!=[]: playerShip.trajectory.pop(0)
@@ -650,6 +684,9 @@ def main():
         startGroup.draw(DISPLAYSURF)
         finishGroup.draw(DISPLAYSURF)
 
+        #draw supplementary lines
+        pygame.draw.circle(DISPLAYSURF, BLUE, (int(playerShip.catcherCenter.x), int(playerShip.catcherCenter.y)), 0)
+        pygame.draw.circle(DISPLAYSURF, BLUE, (int(playerShip.catcherCenter.x), int(playerShip.catcherCenter.y)), int(playerShip.catcherRadius), 1)
 
 
         # module to see ship's movement characteristics
