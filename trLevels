@@ -1,0 +1,195 @@
+#1
+planets
+.
+frPlanets
+700 500 40
+.
+foePlanets
+.
+asteroidSpawnPoints
+.
+labels
+?You control this ship. The ship rotates with left and right keyboard keys. To increase speed press up key
+100 100 50 0 0 1
+?This line is you current trajectory given the speed and gravity of the planets
+370 280 50 0 0 1
+?This is the finish point. To move to next level you have to reach it
+600 400 20 0 0 1
+?This is friendly planet. It will take your ship on its orbit as you reach it
+460 500 40 0 0 1
+.
+start
+100 100
+.
+finish
+600 400
+.
+-
+#2
+planets
+120 290 40
+.
+frPlanets
+.
+foePlanets
+.
+asteroidSpawnPoints
+.
+labels
+?This is neutral planet. Collision with it will destroy your ship. It creates gravity force which is inversely proportional to the square of the distance to the ship
+100 200 50 0 0 1
+?In order to cope with gravity of the planet behind you have to give a full throttle
+200 300 50 0 0 1
+?Behind the screen border is the deep space. Luckily your ship is equipped with automatic deep space navigator which will return the ship back, but this operation requires fuel
+580 400 40 0 0 1
+.
+start
+200 300
+.
+finish
+750 300
+.
+-
+#3
+planets
+520 300 40
+.
+frPlanets
+.
+foePlanets
+.
+asteroidSpawnPoints
+.
+labels
+?Current number of collected minerals and required number of minerals
+50 25 50 0 0 1
+?At this level you have to collect required number of minerals (which is one, see left top corner of the screen) to activate finish
+80 300 40 0 0 1
+?This is mineral, you have to go through it in order to collect
+510 220 30 0 0 1
+?Finish is pale purple that means it is inactive until you gather required number of minerals
+670 300 20 0 0 1
+.
+minerals
+510 220
+.
+required minerals
+1
+.
+start
+80 300
+.
+finish
+750 300
+.
+-
+#4
+planets
+520 300 40
+.
+frPlanets
+.
+foePlanets
+.
+asteroidSpawnPoints
+.
+labels
+?At this level mineral is dangerously close to the neutral planet. The safe way to collect it is to approach planet with head of the ship turned back to the starting point and give a full throttle when mineral is collected
+80 300 35 0 0 1
+?Mineral is very close to the planet
+440 300 30 0 0 1
+.
+minerals
+440 300
+.
+required minerals
+1
+.
+start
+80 300
+.
+finish
+120 300
+.
+-
+#5
+planets
+190 510 40
+250 450 40
+310 390 40
+370 330 40
+430 270 40
+490 210 40
+550 150 40
+610 90 40
+.
+frPlanets
+550 480 40
+.
+foePlanets
+150 300 40 100
+.
+asteroidSpawnPoints
+.
+labels
+?This is foe planet. It will shoot you if you cross the red orbit
+150 300 30 0 0 1
+?Current level of fuel is presented by these bars on the top right corner of the screen
+430 35 30 0 0 1
+?The best way to overcome gravity of these planets is to give a full throttle along the top edge of the screen. But this maneuver requires a lot of fuel
+50 50 40 0 0 1
+?You need to collect this mineral
+490 480 20 0 0 1
+?Being on the orbit of friendly planet will refill your fuel tanks
+550 420 25 0 0 1
+.
+minerals
+490 480
+.
+required minerals
+1
+.
+start
+50 50
+.
+finish
+550 420
+.
+-
+#6
+planets
+.
+frPlanets
+730 300 40
+.
+foePlanets
+.
+asteroidSpawnPoints
+200 5 0 3 60
+300 595 0 -2 45
+400 5 0 4 80
+500 595 0 -6 30
+.
+labels
+?This circle is the asteroid catcher it helps to protect the ship from collision with asteroids. It catches asteroid inside the circle. To catch or push asteroid press the space key
+136 300 30 0 0 1
+?These are asteroids, collision with them will destroy the ship. Pay attention that collision of two asteroids creates mineral
+380 80 40 0 0 1
+?This is mineral to collect
+670 300 10 0 0 1
+?The safest way to go through the asteroid belt is to turn asteroid catcher toward the direction where asteroids come from and use catcher when collision is possible
+380 440 40 0 0 1
+.
+minerals
+670 300
+.
+required minerals
+1
+.
+start
+100 300
+.
+finish
+790 300
+.
+-

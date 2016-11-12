@@ -1,0 +1,446 @@
+#1
+planets
+400 300 40
+400 380 40
+480 300 40
+480 380 40
+.
+frPlanets
+.
+foePlanets
+.
+asteroidSpawnPoints
+.
+labels
+?To accomplish mission you have to:                             
+210 250 70 380 80 0
+?   1.Gather required number of minerals (purple crystals)
+210 270 70 380 0 0
+?   2.Go to the finish, after you gathered minerals       
+210 290 70 380 0 0
+?   3.Do not collide with planets, asteroids and screen borders (if you have no fuel)
+210 310 70 380 0 0
+.
+minerals
+340 500
+.
+required minerals
+1
+.
+start
+50 50
+.
+finish
+750 550
+.
+-
+#2
+planets
+150 320 40
+290 120 40
+630 500 40
+.
+frPlanets
+400 150 40
+.
+foePlanets
+.
+asteroidSpawnPoints
+5 450 6 3.4 30
+230 5 -6 5.4 30
+320 5 6 1.5 40
+.
+labels
+?To accomplish mission you have to:                             
+210 250 70 380 80 0
+?   1.Gather required number of minerals (purple crystals)
+210 270 70 380 0 0
+?   2.Go to the finish, after you gathered minerals       
+210 290 70 380 0 0
+?   3.Do not collide with planets, asteroids and screen borders (if you have no fuel)
+210 310 70 380 0 0
+.
+minerals
+320 400
+.
+required minerals
+1
+.
+start
+750 550
+.
+finish
+200 450
+.
+-
+#3
+planets
+.
+frPlanets
+400 480 40
+.
+foePlanets
+.
+asteroidSpawnPoints
+400 5 -4 3 148
+250 595 -5 -6.5 150
+795 300 -5 -1 100
+.
+labels
+?To accomplish mission you have to:                             
+210 250 70 380 80 0
+?   1.Gather required number of minerals (purple crystals)
+210 270 70 380 0 0
+?   2.Go to the finish, after you gathered minerals       
+210 290 70 380 0 0
+?   3.Do not collide with planets, asteroids and screen borders (if you have no fuel)
+210 310 70 380 0 0
+.
+minerals
+100 530
+410 330
+610 150
+.
+required minerals
+3
+.
+start
+50 50
+.
+finish
+750 550
+.
+-
+#4
+planets
+50 50 40
+.
+frPlanets
+480 530 40
+.
+foePlanets
+.
+asteroidSpawnPoints
+5 200 4 0 100
+795 300 -4 0 100
+.
+labels
+?To accomplish mission you have to:                             
+210 250 70 380 80 0
+?   1.Gather required number of minerals (purple crystals)
+210 270 70 380 0 0
+?   2.Go to the finish, after you gathered minerals       
+210 290 70 380 0 0
+?   3.Do not collide with planets, asteroids and screen borders (if you have no fuel)
+210 310 70 380 0 0
+.
+minerals
+120 150
+350 570
+610 150
+.
+required minerals
+3
+.
+start
+50 550
+.
+finish
+750 150
+.
+-
+#5
+planets
+300 200 40
+600 100 40
+.
+frPlanets
+50 280 40
+.
+foePlanets
+380 380 40 80
+.
+asteroidSpawnPoints
+150 5 0 2 60
+.
+labels
+?To accomplish mission you have to:                             
+210 250 70 380 80 0
+?   1.Gather required number of minerals (purple crystals)
+210 270 70 380 0 0
+?   2.Go to the finish, after you gathered minerals       
+210 290 70 380 0 0
+?   3.Do not collide with planets, asteroids and screen borders (if you have no fuel)
+210 310 70 380 0 0
+.
+start
+50 550
+.
+finish
+750 150
+.
+-
+#6
+planets
+.
+frPlanets
+400 530 40
+.
+foePlanets
+.
+asteroidSpawnPoints
+5 250 3 1 40
+.
+labels
+?To accomplish mission you have to:                             
+210 250 70 380 80 0
+?   1.Gather required number of minerals (purple crystals)
+210 270 70 380 0 0
+?   2.Go to the finish, after you gathered minerals       
+210 290 70 380 0 0
+?   3.Do not collide with planets, asteroids and screen borders (if you have no fuel)
+210 310 70 380 0 0
+.
+minerals
+400 50
+120 570
+610 300
+.
+required minerals
+3
+.
+start
+50 300
+.
+finish
+750 300
+.
+-
+#7
+planets
+90 90 40
+500 320 40
+.
+frPlanets
+300 280 40
+500 500 40
+.
+foePlanets
+.
+asteroidSpawnPoints
+600 5 0 2 60
+650 5 0 4 80
+.
+labels
+?To accomplish mission you have to:                             
+210 250 70 380 80 0
+?   1.Gather required number of minerals (purple crystals)
+210 270 70 380 0 0
+?   2.Go to the finish, after you gathered minerals       
+210 290 70 380 0 0
+?   3.Do not collide with planets, asteroids and screen borders (if you have no fuel)
+210 310 70 380 0 0
+.
+minerals
+100 200
+100 500
+.
+required minerals
+2
+.
+start
+300 50
+.
+finish
+750 550
+.
+-
+#8
+planets
+150 360 40
+380 220 40
+600 360 40
+400 490 40
+.
+frPlanets
+100 500 40
+630 100 40
+.
+foePlanets
+.
+asteroidSpawnPoints
+150 5 -2 2 100
+480 595 2.8 -1.8 60
+.
+labels
+?To accomplish mission you have to:                             
+210 250 70 380 80 0
+?   1.Gather required number of minerals (purple crystals)
+210 270 70 380 0 0
+?   2.Go to the finish, after you gathered minerals       
+210 290 70 380 0 0
+?   3.Do not collide with planets, asteroids and screen borders (if you have no fuel)
+210 310 70 380 0 0
+.
+minerals
+300 305
+475 305
+475 415
+300 415
+.
+required minerals
+4
+.
+start
+50 50
+.
+finish
+50 100
+.
+-
+#9
+planets
+.
+frPlanets
+.
+foePlanets
+400 300 40 100
+.
+asteroidSpawnPoints
+550 595 1.3 -2 60
+200 5 -2 3 64
+500 5 -3 1 43
+700 5 -1 3 38
+795 280 -3 1 36
+.
+labels
+?To accomplish mission you have to:                             
+210 250 70 380 80 0
+?   1.Gather required number of minerals (purple crystals)
+210 270 70 380 0 0
+?   2.Go to the finish, after you gathered minerals       
+210 290 70 380 0 0
+?   3.Do not collide with planets, asteroids and screen borders (if you have no fuel)
+210 310 70 380 0 0
+.
+minerals
+340 500
+.
+required minerals
+2
+.
+start
+50 50
+.
+finish
+750 550
+.
+-
+#10
+planets
+400 300 40
+680 480 40
+320 380 40
+.
+frPlanets
+480 520 40
+.
+foePlanets
+610 150 40 100
+110 510 40 100
+.
+asteroidSpawnPoints
+550 595 1.3 -2 30
+.
+labels
+?To accomplish mission you have to:                             
+210 250 70 380 80 0
+?   1.Gather required number of minerals (purple crystals)
+210 270 70 380 0 0
+?   2.Go to the finish, after you gathered minerals       
+210 290 70 380 0 0
+?   3.Do not collide with planets, asteroids and screen borders (if you have no fuel)
+210 310 70 380 0 0
+.
+start
+50 50
+.
+finish
+750 550
+.
+-
+#11
+planets
+60 60 40
+.
+frPlanets
+400 520 40
+600 400 40
+.
+foePlanets
+.
+asteroidSpawnPoints
+300 5 -4 4 25
+400 5 -3 3 40
+500 5 -1 1 50
+.
+labels
+?To accomplish mission you have to:                             
+210 250 70 380 80 0
+?   1.Gather required number of minerals (purple crystals)
+210 270 70 380 0 0
+?   2.Go to the finish, after you gathered minerals       
+210 290 70 380 0 0
+?   3.Do not collide with planets, asteroids and screen borders (if you have no fuel)
+210 310 70 380 0 0
+.
+minerals
+.
+required minerals
+4
+.
+start
+750 550
+.
+finish
+500 460
+.
+-
+#12
+planets
+.
+frPlanets
+200 150 40
+220 500 40
+.
+foePlanets
+400 300 40 100
+.
+asteroidSpawnPoints
+550 5 4 4 25
+.
+labels
+?To accomplish mission you have to:                             
+210 250 70 380 80 0
+?   1.Gather required number of minerals (purple crystals)
+210 270 70 380 0 0
+?   2.Go to the finish, after you gathered minerals       
+210 290 70 380 0 0
+?   3.Do not collide with planets, asteroids and screen borders (if you have no fuel)
+210 310 70 380 0 0
+.
+minerals
+320 300
+400 380
+480 300
+.
+required minerals
+3
+.
+start
+50 300
+.
+finish
+750 550
+.
+-
